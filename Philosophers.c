@@ -6,7 +6,7 @@
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 21:46:42 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/19 23:26:59 by ahimmi           ###   ########.fr       */
+/*   Updated: 2022/02/21 18:00:29 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,15 @@ int	main(int argc, char *argv[])
 	if (argc >= 2)
 	{
 		lst = philo_create(lst, philo, argv);
-		while (i <= philo)
-		{
-			pthread_mutex_init(&lst->fork, NULL);
-			pthread_create(&lst->thread_philo, NULL, &philo_action, lst);
-			lst = lst->next;
-			i++;
-		}
-		pthread_create(&lst->thread_philo, NULL, &tracker, lst);
-		pthread_join(lst->thread_philo, NULL);
+		// while (i <= philo)
+		// {
+		// 	pthread_mutex_init(&lst->fork, NULL);
+		// 	pthread_create(&lst->thread_philo, NULL, &philo_action, lst);
+		// 	lst = lst->next;
+		// 	i++;
+		// }
+		// pthread_create(&lst->thread_philo, NULL, &tracker, lst);
+		// pthread_join(lst->thread_philo, NULL);
 		//pthread_kill(lst->thread_philo, 0);
 		
 	}

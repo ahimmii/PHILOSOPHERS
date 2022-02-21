@@ -6,18 +6,23 @@
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:13:37 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/20 00:11:57 by ahimmi           ###   ########.fr       */
+/*   Updated: 2022/02/21 18:50:07 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPGERS_H
-#define PHILOSOPGERS_H
+#ifndef PHILOSOPGERS_BONUS_H
+#define PHILOSOPGERS_BONUS_H
 
-#include <pthread.h>
-#include <sys/time.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <sys/time.h>
+# include <string.h>
+# include <semaphore.h>
+# include <signal.h>
+# include <fcntl.h>
+# include <sys/wait.h>
 
 typedef struct s_philosophers
 {
@@ -29,14 +34,10 @@ typedef struct s_philosophers
 	int						time_to_sleep;
 	pthread_t				thread_philo;
 	struct	s_philosophers	*next;
-	pthread_mutex_t			fork;
+	int						pid;
+	sem_t 					*fork;
 	
 } t_philosophers;
-
-typedef struct s_pid
-{
-	int pid;
-}
 
 t_philosophers	*philo_create(t_philosophers *lst, int philosophers,char **argv);
 int				ft_atoi(const char *str);

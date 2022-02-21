@@ -6,11 +6,11 @@
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 23:33:19 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/19 23:33:20 by ahimmi           ###   ########.fr       */
+/*   Updated: 2022/02/21 17:07:23 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Philosophers.h"
+#include "Philosophers_bonus.h"
 
 unsigned int gettime()
 {
