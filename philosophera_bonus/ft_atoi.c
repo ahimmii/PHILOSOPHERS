@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/07 15:06:25 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/22 17:18:50 by ahimmi           ###   ########.fr       */
+/*   Created: 2022/02/10 21:44:11 by ahimmi            #+#    #+#             */
+/*   Updated: 2022/02/22 17:22:44 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Philosophers.h"
+#include "Philosophers_bonus.h"
 
-void	ft_lstadd_back(t_philosophers **lst, t_philosophers *new)
+
+int	ft_atoi(const char *str)
 {
-	t_philosophers	*last;
+	int	i;
+	int	ms;
+	int	r;
 
-	last = *lst;
-	if (!new)
-		return ;
-	if (!*lst)
+	ms = 1;
+	r = 0;
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
+		i++;
+	if (str[i] == 43 || str[i] == 45)
 	{
-		*lst = new;
-		return ;
+		if (str[i] == 45)
+			ms = ms * -1;
+		i++;
 	}
-	last = ft_lstlast(*lst);
-	last->next = new;
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		r = (str[i] - 48) + (r * 10);
+		i++;
+	}
+	return (r * ms);
 }

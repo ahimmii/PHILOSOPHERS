@@ -6,17 +6,17 @@
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 23:33:19 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/22 05:09:25 by ahimmi           ###   ########.fr       */
+/*   Updated: 2022/02/22 18:23:04 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Philosophers_bonus.h"
 
-unsigned int gettime()
+u_long gettime()
 {
 	struct timeval	time_now;
-	unsigned long	time;
-	static long		starting_time = 0;
+	u_long			time;
+	static u_long	starting_time = 0;
 
 	gettimeofday(&time_now, NULL);
 	time = time_now.tv_sec * 1000;
@@ -24,4 +24,14 @@ unsigned int gettime()
 	if (!starting_time)
 		starting_time = time;
 	return (time - starting_time);
+}
+
+void	detach_threads(t_philosophers *philo)
+{
+	pthread_detach(philo->thread_philo);
+}
+
+void	clear_philo(t_philosophers *philo)
+{
+	free(philo);
 }

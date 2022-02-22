@@ -6,7 +6,7 @@
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:13:37 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/15 23:22:51 by ahimmi           ###   ########.fr       */
+/*   Updated: 2022/02/22 18:13:21 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_philosophers
 	int						id;
 	int						time_to_die;
 	int						time_to_eat;
-	unsigned int			last_meal;
+	u_long					last_meal;
 	int						time_to_sleep;
 	pthread_t				thread_philo;
 	struct	s_philosophers	*next;
@@ -39,5 +39,7 @@ unsigned int				gettime();
 void			ft_lstadd_back(t_philosophers **lst, t_philosophers *new);
 t_philosophers	*ft_lstlast(t_philosophers *lst);
 t_philosophers	*ft_lstnew(t_philosophers *data, int i);
+void			detach_threads(t_philosophers *philo);
+void			clear_philo(t_philosophers *philo);
 
 #endif

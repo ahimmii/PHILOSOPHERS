@@ -6,7 +6,7 @@
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:13:37 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/22 05:08:45 by ahimmi           ###   ########.fr       */
+/*   Updated: 2022/02/22 18:20:30 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ typedef struct s_pid
 } t_pid;
 
 
-void	philo_create(t_philosophers *lst, int philosophers,char **argv);
+void			philo_create(t_philosophers *lst, int philosophers,char **argv);
 int				ft_atoi(const char *str);
-unsigned int				gettime();
+u_long			gettime();
 void			ft_lstadd_back(t_pid **lst, t_pid *new);
-t_pid	*ft_lstlast(t_pid *lst);
+t_pid			*ft_lstlast(t_pid *lst);
 t_pid			*ft_lstnew(t_pid *data, int i);
+void			detach_threads(t_philosophers *philo);
+void			clear_philo(t_philosophers *philo);
 
 #endif
