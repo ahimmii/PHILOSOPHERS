@@ -6,7 +6,7 @@
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 23:33:19 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/21 17:07:23 by ahimmi           ###   ########.fr       */
+/*   Updated: 2022/02/22 05:09:25 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 unsigned int gettime()
 {
 	struct timeval	time_now;
-	int				time;
-	static int		starting_time = 0;
+	unsigned long	time;
+	static long		starting_time = 0;
 
 	gettimeofday(&time_now, NULL);
 	time = time_now.tv_sec * 1000;
