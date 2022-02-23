@@ -6,7 +6,7 @@
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 23:33:19 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/22 18:23:04 by ahimmi           ###   ########.fr       */
+/*   Updated: 2022/02/23 04:16:21 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,52 @@ u_long gettime()
 	return (time - starting_time);
 }
 
-void	detach_threads(t_philosophers *philo)
+void	clear_philo(t_pid *pids, t_philosophers *philo)
 {
-	pthread_detach(philo->thread_philo);
+	sem_wait(philo->ext);
+	free(philo);
+	sem_close(philo -> fork);
+	sem_close(philo -> print);
+	while (pids)
+	{
+		kill(pids->pid, SIGQUIT);
+		pids = pids->next;
+	}
 }
 
-void	clear_philo(t_philosophers *philo)
+int	args_check(int ac, char **av)
 {
-	free(philo);
+	int	i;
+
+	i = 1;
+	if (ac < 5)
+		return (write(STDERR_FILENO, "Error:\nArguments needed\n", 24));
+	if (ac > 6)
+		return (write(STDERR_FILENO, "Error:\nToo many args\n", 21));
+	while (i < ac)
+		if (ft_atoi(av[i++]) <= 0)
+			return (write(STDERR_FILENO, "Error:\nArgument not valid\n", 28));
+	return (0);
+}
+
+void	philo_create(t_philosophers *lst, t_pid *pids, char **argv, int argc)
+{
+	lst->n_of_philo = ft_atoi(argv[1]);
+	lst->time_to_die = ft_atoi(argv[2]);
+	lst->time_to_eat = ft_atoi(argv[3]);
+	lst->time_to_sleep = ft_atoi(argv[4]);
+	lst->number_of_times_each_philosopher_must_eat = -1;
+	lst->last_meal = 0;
+	if (argc == 6)
+		lst->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
+}
+
+void	open_sem(t_philosophers *lst, char **av)
+{
+	sem_unlink("fork");
+	sem_unlink("print");
+	sem_unlink("ext");
+	lst->fork = sem_open("fork", O_CREAT | O_EXCL, 666, ft_atoi(av[1]));
+	lst->print = sem_open("print", O_CREAT | O_EXCL, 666, 1);
+	lst->ext = sem_open("ext", O_CREAT | O_EXCL, 666, 0);
 }

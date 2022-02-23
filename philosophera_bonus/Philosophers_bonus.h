@@ -6,7 +6,7 @@
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 01:13:37 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/22 18:20:30 by ahimmi           ###   ########.fr       */
+/*   Updated: 2022/02/23 04:20:29 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ typedef struct s_philosophers
 	int						id;
 	int						time_to_die;
 	int						time_to_eat;
-	unsigned long			last_meal;
+	int						number_of_times_each_philosopher_must_eat;
+	u_long					last_meal;
 	int						time_to_sleep;
 	pthread_t				thread_philo;
 	sem_t					*print;
 	sem_t 					*fork;
+	sem_t 					*ext;
 } t_philosophers;
 
 typedef struct s_pid
@@ -44,13 +46,18 @@ typedef struct s_pid
 } t_pid;
 
 
-void			philo_create(t_philosophers *lst, int philosophers,char **argv);
-int				ft_atoi(const char *str);
-u_long			gettime();
-void			ft_lstadd_back(t_pid **lst, t_pid *new);
-t_pid			*ft_lstlast(t_pid *lst);
-t_pid			*ft_lstnew(t_pid *data, int i);
-void			detach_threads(t_philosophers *philo);
-void			clear_philo(t_philosophers *philo);
+void	philo_create(t_philosophers *lst, t_pid *pids, char **argv, int argc);
+int		ft_atoi(const char *str);
+u_long	gettime();
+void	ft_lstadd_back(t_pid **lst, t_pid *new);
+t_pid	*ft_lstlast(t_pid *lst);
+t_pid	*ft_lstnew(int pid);
+void	detach_threads(t_philosophers *philo);
+void	*philo_action1(t_philosophers *lst, t_pid *pid);
+void	philo_action2(t_philosophers *lst, t_pid *pid);
+void	clear_philo(t_pid *pids, t_philosophers *philo);
+int		args_check(int ac, char **av);
+void	open_sem(t_philosophers *lst, char **av);
+t_pid	*loop_fork(t_philosophers *lst, t_pid *pids);
 
 #endif
