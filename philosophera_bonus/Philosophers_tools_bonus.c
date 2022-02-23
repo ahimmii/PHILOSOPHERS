@@ -6,13 +6,13 @@
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 23:33:19 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/23 04:16:21 by ahimmi           ###   ########.fr       */
+/*   Updated: 2022/02/23 04:31:50 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Philosophers_bonus.h"
 
-u_long gettime()
+u_long	gettime(void)
 {
 	struct timeval	time_now;
 	u_long			time;

@@ -6,12 +6,11 @@
 /*   By: ahimmi <ahimmi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 21:44:11 by ahimmi            #+#    #+#             */
-/*   Updated: 2022/02/10 21:46:22 by ahimmi           ###   ########.fr       */
+/*   Updated: 2022/02/23 04:32:24 by ahimmi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Philosophers.h"
-
 
 int	ft_atoi(const char *str)
 {
@@ -35,5 +34,7 @@ int	ft_atoi(const char *str)
 		r = (str[i] - 48) + (r * 10);
 		i++;
 	}
+	if (str[i] != 0)
+		return (0);
 	return (r * ms);
 }
